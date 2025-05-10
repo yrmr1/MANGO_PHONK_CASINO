@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Казино на Робукси</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <h1>🎲 Казино на Робукси</h1>
+    <p id="balance">Ваші робукси: 💰 <span id="robux">100</span></p>
+  </div>
+
+  <div id="menu">
+    <button onclick="showGame('slot')">Слоти 🎰</button>
+    <button onclick="showGame('roulette')">Рулетка 🎯</button>
+    <button onclick="showGame('blackjack')">Блекджек ♠️</button>
+    <button onclick="showGame('shop')">Магазин 🛒</button>
+  </div>
+
+  <div id="slotGame" class="game hidden">
+    <h2>Слоти 🎰</h2>
+    <div class="slot-machine">
+      <div id="slot1" class="slot">🍒</div>
+      <div id="slot2" class="slot">🍋</div>
+      <div id="slot3" class="slot">🍊</div>
+    </div>
+    <button onclick="spin()">Крутити (-10 робуксів)</button>
+    <p id="slotResult"></p>
+    <button onclick="goToMenu()">⬅ Назад</button>
+  </div>
+
+  <div id="rouletteGame" class="game hidden">
+    <h2>Рулетка 🎯</h2>
+    <p>Виберіть ставку (20 робуксів):</p>
+    <button onclick="playRoulette('червоне')">Червоне 🔴</button>
+    <button onclick="playRoulette('чорне')">Чорне ⚫</button>
+    <p id="rouletteResult"></p>
+    <button onclick="goToMenu()">⬅ Назад</button>
+  </div>
+
+  <div id="blackjackGame" class="game hidden">
+    <h2>Блекджек ♠️ (ставка: 20 робуксів)</h2>
+    <div id="blackjackArea">
+      <p id="blackjackPlayer"></p>
+      <p id="blackjackDealer"></p>
+      <p id="blackjackResult"></p>
+    </div>
+    <button onclick="startBlackjack()">Почати</button>
+    <button onclick="hit()">Ще карту</button>
+    <button onclick="stand()">Стоп</button>
+    <button onclick="goToMenu()">⬅ Назад</button>
+  </div>
+
+  <div id="shopGame" class="game hidden">
+    <h2>Магазин 🛒</h2>
+    <p>Купити 50 або 100 робуксів:</p>
+    <button onclick="buyRobux(50)">Купити 50</button>
+    <button onclick="buyRobux(100)">Купити 100</button>
+    <button onclick="goToMenu()">⬅ Назад</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
