@@ -1,20 +1,26 @@
 let robux = 100;
 let dep = 100;
 const symbols = ["🍒", "🍋", "🍊", "🍇", "⭐", "💎"];
+let count = 0;
 
 function plus(){
-
+if(robux > dep)
   
   dep += 10
   updateBalance()
 }
 
 function min(){
-  
+  if (dep > 10){
   dep -= 10
+  }
   updateBalance()
+  
 }
 function updateBalance() {
+  if (dep > robux){
+    dep = robux;
+  }
   document.getElementById("depValue").textContent = dep;
   document.getElementById("robux").textContent = robux;
 }
@@ -31,31 +37,18 @@ function goToMenu() {
 }
 
 function spin() {
-  
-  if (robux < dep) return alert("Недостатньо робуксів!");
+  count = 0;
+
   robux -= dep;
   updateBalance();
 
-  const s1 = symbols[Math.floor(Math.random() * symbols.length)];
-  const s2 = symbols[Math.floor(Math.random() * symbols.length)];
-  const s3 = symbols[Math.floor(Math.random() * symbols.length)];
+updateSlots();
+setTimeout(res, 3200);
+count = 0;
 
-  document.getElementById("slot1").textContent = s1;
-  document.getElementById("slot2").textContent = s2;
-  document.getElementById("slot3").textContent = s3;
-
-  const result = document.getElementById("slotResult");
-
-  if (s1 === s2 && s2 === s3) {
-    robux += dep * 11;
-    result.textContent = "🎉 Виграш + " + dep * 10 + " робуксів!";
-    result.style.animation = "flashWin 1s ease";
-    setTimeout(() => result.style.animation = "", 1000);
-  } else {
-    result.textContent = "😢 Нічого не випало.";
-  }
-
-  updateBalance();
+if  (dep > robux){
+  dep = robux
+}
 }
 
 function playRoulette(choice) {
@@ -77,7 +70,7 @@ function playRoulette(choice) {
 function buyRobux(amount) {
   robux += amount;
   updateBalance();
-  alert(`+${amount} робуксів отримано!`);
+  
 }
 
 let playerCards = [], dealerCards = [];
@@ -139,3 +132,49 @@ function stand() {
   dealerCards = [];
   renderBlackjack();
 }
+
+
+
+function updateSlots() {
+    if (count >= 20) return;
+
+    const s1 = symbols[Math.floor(Math.random() * symbols.length)];
+    const s2 = symbols[Math.floor(Math.random() * symbols.length)];
+    const s3 = symbols[Math.floor(Math.random() * symbols.length)];
+
+    document.getElementById("slot1").textContent = s1;
+    document.getElementById("slot2").textContent = s2;
+    document.getElementById("slot3").textContent = s3;
+
+    count++;
+
+  
+    setTimeout(updateSlots, count * 10 + 50);
+}
+
+function res (){
+    
+      const s1 = symbols[Math.floor(Math.random() * symbols.length)];
+    const s2 = symbols[Math.floor(Math.random() * symbols.length)];
+    const s3 = symbols[Math.floor(Math.random() * symbols.length)];
+    document.getElementById("slot1").textContent = s1;
+    document.getElementById("slot2").textContent = s2;
+    document.getElementById("slot3").textContent = s3;
+  const result = document.getElementById("slotResult");
+
+  if (s1 === s2 && s2 === s3) {
+    robux += dep * 11;
+    result.textContent = "🎉 Виграш + " + dep * 10 + " робуксів!";
+    
+    result.style.animation = "flashWin 1s ease";
+    setTimeout(() => result.style.animation = "", 1000);
+  } else {
+    result.textContent = "😢 Нічого не випало.";
+   
+  }
+
+  updateBalance();
+}
+
+
+ 
