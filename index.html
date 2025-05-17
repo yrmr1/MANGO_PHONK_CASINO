@@ -8,6 +8,7 @@
 <body>
   <h1>🎲 Казино на Робукси</h1>
   <div id="balance" class="balance">Баланс: <span id="robux">100</span> 💸</div>
+  <p id="dep">ставка:  <span id="dep">100</span></p>
 
   <div id="menu" class="menu">
     <button onclick="showGame('slotGame')">Слоти</button>
@@ -23,10 +24,11 @@
       <div class="reel" id="reel2">🍋</div>
       <div class="reel" id="reel3">🍊</div>
     </div>
-    <button onclick="playSlot()">Крутити (20 робуксів)</button>
-    <div id="slotResult" class="result"></div>
-    <br>
-    <button onclick="showGame('menu')">← Назад</button>
+    <button onclick="spin()">Крутити</button>
+    <p id="slotResult"></p>
+    <button onclick="goToMenu()">⬅ Назад</button>
+    <button onclick="plus()"> ставка + 10</button>
+    <button onclick="min()"> ставка - 10</button>
   </div>
 
   <div id="rouletteGame" class="game hidden">
