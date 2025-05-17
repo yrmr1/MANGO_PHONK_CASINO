@@ -1,8 +1,21 @@
 let robux = parseInt(localStorage.getItem('robux')) || 100;
+let dep = 100;
 
+function plus(){
+
+  
+  dep += 10
+  updateBalance()
+}
+
+function min(){
+  
+  dep -= 10
+  updateBalance()
+}
 function updateBalance() {
+  document.getElementById("dep").textContent = "ставка: " + dep;
   document.getElementById("robux").textContent = robux;
-  localStorage.setItem('robux', robux);
 }
 
 function showGame(id) {
