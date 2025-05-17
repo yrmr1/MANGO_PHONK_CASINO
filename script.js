@@ -15,7 +15,7 @@ function min(){
   updateBalance()
 }
 function updateBalance() {
-  document.getElementById("dep").textContent = "ставка: " + dep;
+  document.getElementById("depValue").textContent = dep;
   document.getElementById("robux").textContent = robux;
 }
 
