@@ -1,7 +1,7 @@
 let robux = 100;
 let dep = 100;
-// const symbols = ["🍒", "🍋", "🍊", "🍇", "⭐", "💎"];
-const symbols = ["🍒"];
+const symbols = ["🍒", "🍋", "🍊", "🍇", "⭐", "💎"];
+
 function plus(){
 
   
