@@ -1,7 +1,9 @@
 let robux = 100;
 let dep = 100;
 const symbols = ["🍒", "🍋", "🍊", "🍇", "⭐", "💎"];
+const roll = ['⚫', '💎', '🔴'];
 let count = 0;
+let sroll = ['💎','💎','💎'];
 
 function plus(){
 if(robux > dep)
@@ -55,38 +57,13 @@ if  (dep > robux){
 
 
 function playRoulette(choice) {
+  count = 0;
   if (dep <10) return;
   if (robux < 10) return;
   robux -= dep;
+  rollF(choice);
+  setTimeout(resr, 3200);
 
-  // const result = Math.random() < 0.5 ? 'червоне' : 'чорне';
-  const fim = Math.random()
-  const diamondChance = Math.random() * 0.10; //from 0 to 0.05
-  if (fim > 0.5 + diamondChance){
-    result = 'червоне'
-  } else
-  if (fim < 0.5 - diamondChance){
-    result = 'чорне'
-  } else {
-    result = 'zero'
-  }
-console.log(result)
-
-  const msg = result === choice && choice != "zero" ?
-   "🎉 Ви виграли " +  dep * 2 + " робуксів!" :
-    result == choice && choice == "zero" ?
-     "🎉 Ви виграли " +  dep * 10 + " робуксів!" :
-      "❌ Ви програли " +  dep  + " робуксів!" ;
-  
-
-  if (result === choice && choice != "zero") robux += +  dep * 2;
-  if (result === choice && choice == "zero") robux += +  dep * 10;
-  const res = document.getElementById("rouletteResult");
-  res.textContent = `Випало: ${result}. ${msg}`;
-  res.style.animation = "flashWin 1s ease";
-  setTimeout(() => {tim(res)}, 3000); 
-  // setTimeout(() => res.style.animation = "", 1000);
-  updateBalance();
 }
 
 function buyRobux(amount) {
@@ -204,3 +181,63 @@ function tim(text){
 }
 
 
+
+
+
+function rollF() {
+  if (count >= 20) return;
+  
+  const s11 = roll[Math.floor(Math.random() * roll.length)];
+  if (sroll.length > 2) {
+    sroll.shift()
+  }
+  sroll.push(s11)
+  console.log(sroll )
+  
+  console.log(s11 )
+
+  
+  document.getElementById("roll").textContent = sroll[0] + " " +sroll[1] + " " +sroll[2] 
+
+  count++;
+
+
+  setTimeout(rollF, count * 10 + 50);
+}
+
+
+
+function resr(choice){
+    // const result = Math.random() < 0.5 ? 'червоне' : 'чорне';
+    const fim = Math.random()
+    const diamondChance = Math.random() * 0.10; //from 0 to 0.05
+    if (fim > 0.5 + diamondChance){
+      result = 'червоне'
+      rest = '🔴'
+    } else
+    if (fim < 0.5 - diamondChance){
+      result = 'чорне'
+      rest = '⚫'
+    } else {
+      result = 'zero'
+      rest = '💎'
+    }
+    document.getElementById("roll").textContent = rest;
+  console.log(result)
+  
+    const msg = result === choice && choice != "zero" ?
+     "🎉 Ви виграли " +  dep * 2 + " робуксів!" :
+      result == choice && choice == "zero" ?
+       "🎉 Ви виграли " +  dep * 10 + " робуксів!" :
+        "❌ Ви програли " +  dep  + " робуксів!" ;
+    
+  
+    if (result === choice && choice != "zero") robux += +  dep * 2;
+    if (result === choice && choice == "zero") robux += +  dep * 10;
+    const res = document.getElementById("rouletteResult");
+    res.textContent = `Випало: ${result}. ${msg}`;
+    res.style.animation = "flashWin 1s ease";
+    setTimeout(() => {tim(res)}, 3000); 
+    // setTimeout(() => res.style.animation = "", 1000);
+    updateBalance();
+}
