@@ -1,7 +1,7 @@
 let robux = 100;
 let dep = 100;
 const symbols = ["🍒", "🍋", "🍊", "🍇", "⭐", "💎"];
-const roll = ['⚫', '💎', '🔴'];
+const roll = ['⚫', '💎', '🔴', '⚫', '🔴', '⚫', '🔴'];
 let count = 0;
 let sroll = ['💎','💎','💎'];
 
@@ -62,7 +62,7 @@ function playRoulette(choice) {
   if (robux < 10) return;
   robux -= dep;
   rollF(choice);
-  setTimeout(resr, 3200);
+  setTimeout(resr, 5000);
 
 }
 
@@ -197,7 +197,7 @@ function rollF() {
   console.log(s11 )
 
   
-  document.getElementById("roll").textContent = sroll[0] + " " +sroll[1] + " " +sroll[2] 
+  document.getElementById("roll").textContent = sroll[0] + " <" +sroll[1] + "> " +sroll[2] 
 
   count++;
 
@@ -209,13 +209,13 @@ function rollF() {
 
 function resr(choice){
     // const result = Math.random() < 0.5 ? 'червоне' : 'чорне';
-    const fim = Math.random()
-    const diamondChance = Math.random() * 0.10; //from 0 to 0.05
-    if (fim > 0.5 + diamondChance){
+    // const fim = Math.random()
+    // const diamondChance = Math.random() * 0.10; //from 0 to 0.05
+    if (sroll[1] == '🔴'){
       result = 'червоне'
       rest = '🔴'
     } else
-    if (fim < 0.5 - diamondChance){
+    if (sroll[1] == '⚫'){
       result = 'чорне'
       rest = '⚫'
     } else {
