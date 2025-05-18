@@ -37,6 +37,8 @@ function goToMenu() {
 }
 
 function spin() {
+  if (dep <10) return;
+  if (robux < 10) return;
   count = 0;
 
   robux -= dep;
@@ -51,19 +53,39 @@ if  (dep > robux){
 }
 }
 
+
 function playRoulette(choice) {
-  if (robux < 20) return alert("Недостатньо робуксів!");
-  robux -= 20;
+  if (dep <10) return;
+  if (robux < 10) return;
+  robux -= dep;
 
-  const result = Math.random() < 0.5 ? 'червоне' : 'чорне';
-  const msg = result === choice ? "🎉 Ви виграли 80 робуксів!" : "❌ Ви програли.";
+  // const result = Math.random() < 0.5 ? 'червоне' : 'чорне';
+  const fim = Math.random()
+  const diamondChance = Math.random() * 0.10; //from 0 to 0.05
+  if (fim > 0.5 + diamondChance){
+    result = 'червоне'
+  } else
+  if (fim < 0.5 - diamondChance){
+    result = 'чорне'
+  } else {
+    result = 'zero'
+  }
+console.log(result)
 
-  if (result === choice) robux += 80;
+  const msg = result === choice && choice != "zero" ?
+   "🎉 Ви виграли " +  dep * 2 + " робуксів!" :
+    result == choice && choice == "zero" ?
+     "🎉 Ви виграли " +  dep * 10 + " робуксів!" :
+      "❌ Ви програли " +  dep  + " робуксів!" ;
+  
 
+  if (result === choice && choice != "zero") robux += +  dep * 2;
+  if (result === choice && choice == "zero") robux += +  dep * 10;
   const res = document.getElementById("rouletteResult");
   res.textContent = `Випало: ${result}. ${msg}`;
   res.style.animation = "flashWin 1s ease";
-  setTimeout(() => res.style.animation = "", 1000);
+  setTimeout(() => {tim(res)}, 3000); 
+  // setTimeout(() => res.style.animation = "", 1000);
   updateBalance();
 }
 
@@ -80,7 +102,8 @@ function drawCard() {
 }
 
 function startBlackjack() {
-  if (robux < 20) return alert("Недостатньо робуксів!");
+  if (dep <10) return;
+  if (robux < 10) return;
   robux -= 20;
   playerCards = [drawCard(), drawCard()];
   dealerCards = [drawCard(), drawCard()];
@@ -167,14 +190,17 @@ function res (){
     result.textContent = "🎉 Виграш + " + dep * 10 + " робуксів!";
     
     result.style.animation = "flashWin 1s ease";
-    setTimeout(() => result.style.animation = "", 1000);
+    setTimeout(() => {tim(result)}, 1000); 
   } else {
     result.textContent = "😢 Нічого не випало.";
-   
+    setTimeout(() => {tim(result)}, 1000); 
   }
 
   updateBalance();
 }
 
+function tim(text){
+  text.textContent = " "
+}
 
- 
+
