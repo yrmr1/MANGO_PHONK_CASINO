@@ -35,12 +35,16 @@
 
   <div id="rouletteGame" class="game hidden">
     <h2>Рулетка 🎯</h2>
-    <p>Виберіть ставку (20 робуксів):</p>
+    <p>🔴💎⚫</p>
     <button onclick="playRoulette('червоне')">Червоне 🔴</button>
     <button onclick="playRoulette('чорне')">Чорне ⚫</button>
+    <button onclick="playRoulette('zero')">Zero 💎</button>
+
 
     <p id="rouletteResult"></p>
+    <button onclick="min()">ставка -</button>
     <button onclick="goToMenu()">⬅ Назад</button>
+    <button onclick="plus()">ставка +</button>
   </div>
 
   <div id="blackjackGame" class="game hidden">
