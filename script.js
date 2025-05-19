@@ -136,7 +136,7 @@ function stand() {
 
 
 function updateSlots() {
-    if (count >= 20) return;
+    if (count >= 15) return;
 
     const s1 = symbols[Math.floor(Math.random() * symbols.length)];
     const s2 = symbols[Math.floor(Math.random() * symbols.length)];
@@ -149,7 +149,7 @@ function updateSlots() {
     count++;
 
   
-    setTimeout(updateSlots, count * 10 + 50);
+    setTimeout(updateSlots, count * 15 + 50);
 }
 
 function res (){
@@ -185,7 +185,7 @@ function tim(text){
 
 
 function rollF() {
-  if (count >= 20) return;
+  if (count >= 30) return;
   
   const s11 = roll[Math.floor(Math.random() * roll.length)];
   if (sroll.length > 2) {
@@ -202,7 +202,7 @@ function rollF() {
   count++;
 
 
-  setTimeout(rollF, count * 10 + 50);
+  setTimeout(rollF, count * 5 + 50);
 }
 
 
