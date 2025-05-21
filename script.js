@@ -1,10 +1,14 @@
 let robux = 100;
 let dep = 100;
-const symbols = ["🍒", "🍋", "🍊", "🍇", "⭐", "💎"];
+let dep1 = 0;
+// const symbols = ["🍒", "🍋", "🍊", "🍇", "⭐", "💎"];
+const symbols = ["🍒"];
 const roll = ['⚫', '💎', '🔴', '⚫', '🔴', '⚫', '🔴'];
 let count = 0;
 let sroll = ['💎','💎','💎'];
-
+let srin1 = ['💎','💎','💎'];
+let srin2 = ['💎','💎','💎'];
+let srin3 = ['💎','💎','💎'];
 function plus(){
 if(robux > dep)
   
@@ -39,11 +43,12 @@ function goToMenu() {
 }
 
 function spin() {
+  dep1 = dep;
   if (dep <10) return;
   if (robux < 10) return;
   count = 0;
 
-  robux -= dep;
+  robux -= dep1;
   updateBalance();
 
 updateSlots();
@@ -138,13 +143,56 @@ function stand() {
 function updateSlots() {
     if (count >= 15) return;
 
-    const s1 = symbols[Math.floor(Math.random() * symbols.length)];
-    const s2 = symbols[Math.floor(Math.random() * symbols.length)];
-    const s3 = symbols[Math.floor(Math.random() * symbols.length)];
+const s21 = symbols[Math.floor(Math.random() * symbols.length)];
 
-    document.getElementById("slot1").textContent = s1;
-    document.getElementById("slot2").textContent = s2;
-    document.getElementById("slot3").textContent = s3;
+
+
+   if (sroll.length > 2) {
+    srin1.shift()
+  }
+  srin1.push(s21)
+  console.log(srin1)
+  
+  console.log(s21)
+
+  
+  document.getElementById("slot1").textContent = srin1[0] + " <" +srin1[1] + "> " +srin1[2]   
+
+
+
+  const s22 = symbols[Math.floor(Math.random() * symbols.length)];
+
+
+
+   if (sroll.length > 2) {
+    srin2.shift()
+  }
+  srin2.push(s21)
+  console.log(srin2)
+  
+  console.log(s22)
+
+  
+  document.getElementById("slot2").textContent = srin2[0] + " <" +srin2[1] + "> " +srin2[2]
+  
+  const s12 = symbols[Math.floor(Math.random() * symbols.length)];
+
+
+
+   if (sroll.length > 2) {
+    srin3.shift()
+  }
+  srin3.push(s12)
+  console.log(srin3)
+  
+  console.log(s12)
+
+  
+  document.getElementById("slot3").textContent = srin3[0] + " <" +srin3[1] + "> " +srin3[2] 
+
+
+
+
 
     count++;
 
@@ -153,21 +201,28 @@ function updateSlots() {
 }
 
 function res (){
+
+
+
+const s21 = symbols[Math.floor(Math.random() * symbols.length)];
+
+
+
+
+
+
+
     
-      const s1 = symbols[Math.floor(Math.random() * symbols.length)];
-    const s2 = symbols[Math.floor(Math.random() * symbols.length)];
-    const s3 = symbols[Math.floor(Math.random() * symbols.length)];
-    document.getElementById("slot1").textContent = s1;
-    document.getElementById("slot2").textContent = s2;
-    document.getElementById("slot3").textContent = s3;
+  
   const result = document.getElementById("slotResult");
 
-  if (s1 === s2 && s2 === s3) {
+  if (srin1[1] === srin2[1] && srin2[1] === srin3[1]) {
     robux += dep * 11;
     result.textContent = "🎉 Виграш + " + dep * 10 + " робуксів!";
-    
-    result.style.animation = "flashWin 1s ease";
     setTimeout(() => {tim(result)}, 1000); 
+    result.style.animation = "flashWin 1s ease";
+    
+    // alert("sadasdasdasd")
   } else {
     result.textContent = "😢 Нічого не випало.";
     setTimeout(() => {tim(result)}, 1000); 
