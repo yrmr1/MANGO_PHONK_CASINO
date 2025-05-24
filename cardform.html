@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Оплата карткою</title>
+  <style>
+    body {
+      background: #f2f2f2;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card-form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    .card-form h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .card-details {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .card-details input {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ffc107;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e0a800;
+    }
+  </style>
+</head>
+<body>
+
+  <form class="card-form" action="#" method="post">
+    <h2>Оплата карткою</h2>
+    <div class="form-group">
+      <label for="cardNumber">Номер картки</label>
+      <input type="text" id="cardNumber" maxlength="19" placeholder="0000 0000 0000 0000" required>
+    </div>
+
+    <div class="form-group">
+      <label for="cardName">Ім’я власника</label>
+      <input type="text" id="cardName" placeholder="Ivan Ivanov" required>
+    </div>
+
+    <div class="card-details">
+      <div class="form-group">
+        <label for="expiry">Термін дії</label>
+        <input type="text" id="expiry" maxlength="5" placeholder="MM/YY" required>
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="password" id="cvv" maxlength="3" placeholder="123" required>
+      </div>
+    </div>
+
+    <button type="submit">Оплатити</button>
+  </form>
+
+</body>
+</html>
