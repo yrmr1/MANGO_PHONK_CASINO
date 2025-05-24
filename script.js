@@ -1,19 +1,21 @@
 let robux = 100;
 let dep = 100;
-let dep1 = 0;
-// const symbols = ["🍒", "🍋", "🍊", "🍇", "⭐", "💎"];
-const symbols = ["🍒"];
+
+const symbols = ["🍒", "🍋", "🍊", "🍇", "⭐", "💎"];
+// const symbols = ["🍒"];
 const roll = ['⚫', '💎', '🔴', '⚫', '🔴', '⚫', '🔴'];
 let count = 0;
 let sroll = ['💎','💎','💎'];
 let srin1 = ['💎','💎','💎'];
 let srin2 = ['💎','💎','💎'];
 let srin3 = ['💎','💎','💎'];
+let sp1in = 1;
 function plus(){
 if(robux > dep)
   
   dep += 10
   updateBalance()
+  
 }
 
 function min(){
@@ -21,13 +23,14 @@ function min(){
   dep -= 10
   }
   updateBalance()
+    
   
 }
 function updateBalance() {
-  if (dep > robux){
-    dep = robux;
-  }
-  document.getElementById("depValue").textContent = dep;
+  // if (dep > robux){
+  //   dep = robux;
+  // }
+document.getElementById("depValue").textContent = dep;
   document.getElementById("robux").textContent = robux;
 }
 
@@ -43,22 +46,27 @@ function goToMenu() {
 }
 
 function spin() {
-  dep1 = dep;
-  if (dep <10) return;
-  if (robux < 10) return;
+  // if  (dep > robux){
+//   dep = robux
+// }
+//   if (sp1in == 1){
+robux -= dep;
+  
+ 
+//   if (dep < 10) return;
+//   if (robux < 10) return;
   count = 0;
 
-  robux -= dep1;
+  
   updateBalance();
 
-updateSlots();
-setTimeout(res, 3200);
-count = 0;
+  updateSlots();
+  setTimeout(res, 3200);
+  count = 0;
+  sp1in = 0;
+  }
 
-if  (dep > robux){
-  dep = robux
-}
-}
+//}
 
 
 function playRoulette(choice) {
@@ -229,6 +237,13 @@ const s21 = symbols[Math.floor(Math.random() * symbols.length)];
   }
 
   updateBalance();
+  
+  sp1in = 1;
+  if (robux < dep){
+    dep = robux;
+    updateBalance();
+  }
+    
 }
 
 function tim(text){
@@ -287,8 +302,8 @@ function resr(choice){
         "❌ Ви програли " +  dep  + " робуксів!" ;
     
   
-    if (result === choice && choice != "zero") robux += +  dep * 2;
-    if (result === choice && choice == "zero") robux += +  dep * 10;
+    if (result == choice && choice != "zero") robux +=  dep * 2;
+    if (result == choice && choice == "zero") robux +=  dep * 10;
     const res = document.getElementById("rouletteResult");
     res.textContent = `Випало: ${result}. ${msg}`;
     res.style.animation = "flashWin 1s ease";
