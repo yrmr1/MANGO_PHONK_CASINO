@@ -71,11 +71,12 @@ robux -= dep;
 
 function playRoulette(choice) {
   count = 0;
-  if (dep <10) return;
-  if (robux < 10) return;
+  alert(choice);
+  // if (dep <10) return;
+  // if (robux < 10) return;
   robux -= dep;
-  rollF(choice);
-  setTimeout(resr, 5000);
+  rollF();
+  setTimeout(resr(choice), 5000);
 
 }
 
@@ -210,7 +211,15 @@ const s21 = symbols[Math.floor(Math.random() * symbols.length)];
 
 function res (){
 
-
+if (robux < 10){
+return;
+}
+if (dep < 10){
+  dep = 10
+  if (robux < 10){
+    return;
+    }  
+}
 
 const s21 = symbols[Math.floor(Math.random() * symbols.length)];
 
@@ -281,29 +290,33 @@ function resr(choice){
     // const result = Math.random() < 0.5 ? 'червоне' : 'чорне';
     // const fim = Math.random()
     // const diamondChance = Math.random() * 0.10; //from 0 to 0.05
-    if (sroll[1] == '🔴'){
-      result = 'червоне'
-      rest = '🔴'
-    } else
-    if (sroll[1] == '⚫'){
-      result = 'чорне'
-      rest = '⚫'
-    } else {
-      result = 'zero'
-      rest = '💎'
-    }
+    // if (sroll[1] == '🔴'){
+    // //   result = 'червоне'
+    // //   rest = '🔴'
+    // // } else
+    // // if (sroll[1] == '⚫'){
+    // //   result = 'чорне'
+    // //   rest = '⚫'
+    // // } else {
+    // //   result = 'zero'
+    // //   rest = '💎'
+    // // }
+    console.log(choice)
     document.getElementById("roll").textContent = rest;
   console.log(result)
+
+
+  document.getElementById("rouletteResult");
   
-    const msg = result === choice && choice != "zero" ?
+    const msg = roll[1] === choice && choice != "zero" ?
      "🎉 Ви виграли " +  dep * 2 + " робуксів!" :
-      result == choice && choice == "zero" ?
+     roll[1] == choice && choice == "zero" ?
        "🎉 Ви виграли " +  dep * 10 + " робуксів!" :
         "❌ Ви програли " +  dep  + " робуксів!" ;
     
   
-    if (result == choice && choice != "zero") robux +=  dep * 2;
-    if (result == choice && choice == "zero") robux +=  dep * 10;
+    if (roll[1] == choice && choice != "zero") robux += dep * 2;
+    if (roll[1] == choice && choice == "zero") robux += dep * 10;
     const res = document.getElementById("rouletteResult");
     res.textContent = `Випало: ${result}. ${msg}`;
     res.style.animation = "flashWin 1s ease";
