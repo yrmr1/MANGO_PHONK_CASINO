@@ -18,6 +18,7 @@ if(robux > dep)
   
 }
 
+
 function min(){
   if (dep > 10){
   dep -= 10
@@ -83,7 +84,7 @@ function playRoulette(choice) {
 function buyRobux(amount) {
   robux += amount;
   updateBalance();
-  
+  window.location.href='index.html'
 }
 
 let playerCards = [], dealerCards = [];
