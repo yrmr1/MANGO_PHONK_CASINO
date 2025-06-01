@@ -27,11 +27,23 @@ function min(){
     
   
 }
+
+function updateBalance1() {
+  // if (dep > robux){
+  //   dep = robux;
+  // }
+
+  document.getElementById("robux1").textContent = robux;
+
+}
+
+
 function updateBalance() {
   // if (dep > robux){
   //   dep = robux;
   // }
 document.getElementById("depValue").textContent = dep;
+  document.getElementById("robux1").textContent = robux;
   document.getElementById("robux").textContent = robux;
 }
 
@@ -44,6 +56,7 @@ function showGame(game) {
 function goToMenu() {
   document.querySelectorAll(".game").forEach(div => div.classList.add("hidden"));
   document.getElementById("menu").classList.remove("hidden");
+  updateBalance()
 }
 
 function spin() {
@@ -69,6 +82,11 @@ robux -= dep;
 
 //}
 
+function goBack() {
+  window.location.href='index.html'
+  updateBalance()
+  updateBalance1()
+}
 
 function playRoulette(choice) {
   count = 0;
@@ -85,6 +103,13 @@ function buyRobux(amount) {
   robux += amount;
   updateBalance();
   window.location.href='index.html'
+}
+
+function buyRobux1() {
+  let mani = document.getElementById("rob")
+  robux += Number(mani.value);
+  updateBalance1();
+  console.log(robux);
 }
 
 let playerCards = [], dealerCards = [];
