@@ -33,15 +33,14 @@ button:hover {
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
-  justify-content: center; /* центрируем карты по горизонтали */
-  background-color: transparent; /* явно убираем фон */
-  padding: 0;  /* чтобы не было внутренних отступов */
+  justify-content: center;
+  background-color: transparent;
+  padding: 0;
 }
 
 .card {
   font-family: monospace;
   font-size: 14px;
-  /* background-color: #222; */  /* фон убран */
   color: #FFD700;
   padding: 10px;
   border-radius: 8px;
@@ -49,14 +48,13 @@ button:hover {
   white-space: pre;
   min-width: 90px;
   line-height: 1.15em;
-  background-color: transparent; /* дополнительно фон не задаем */
-  border: none; /* если были границы */
-  display: flex; 
-  justify-content: center; 
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  height: 120px; /* фиксируем высоту для одинакового размера */
+  height: 120px;
 }
-
 
 .slot-machine {
   display: flex;
