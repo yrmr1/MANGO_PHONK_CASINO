@@ -21,11 +21,11 @@
 
   <div id="slotGame" class="game hidden">
     <h2>Слоти 🎰</h2>
-<div class="slot-machine">
-  <div id="slot1" class="slot">💎<br>💎<br>💎</div>
-  <div id="slot2" class="slot">💎<br>💎<br>💎</div>
-  <div id="slot3" class="slot">💎<br>💎<br>💎</div>
-</div>
+    <div class="slot-machine">
+      <div id="slot1" class="slot">💎<br>💎<br>💎</div>
+      <div id="slot2" class="slot">💎<br>💎<br>💎</div>
+      <div id="slot3" class="slot">💎<br>💎<br>💎</div>
+    </div>
 
     <button onclick="spin()">Крутити</button>
     <p id="slotResult"></p>
@@ -43,31 +43,28 @@
     <p id="rouletteResult"></p>
     <button onclick="min()">Ставка - 10</button>
     <button onclick="plus()">Ставка + 10</button>
-    <button onclick="goToMenu()">⬅ Назад</button>
+    <button onclick="goToMen
+    u()">⬅ Назад</button>
   </div>  
 
   <div id="blackjackGame" class="game hidden">
-    <h2>Блекджек ♠️ (ставка: 20 робуксів)</h2>
+    <h2>Блекджек ♠️ (ставка: <span id="blackjackBet">20</span> робуксів)</h2>
+    <div id="blackjackCards" style="display: flex; gap: 10px; justify-content: center; margin: 10px 0;">
+    </div>
+
     <div id="blackjackArea">
       <p id="blackjackPlayer"></p>
       <p id="blackjackDealer"></p>
       <p id="blackjackResult"></p>
-
-<button onclick="plus()">Ставка +10</button>
-<button onclick="min()">Ставка -10</button>
-
-    </div>
+<div id="betButtons">
+     <button onclick="plus()">Ставка +10</button>
+      <button onclick="min()">Ставка -10</button>
+   <button onclick="goToMenu()">⬅ Назад</button>
     <button onclick="startBlackjack()">Почати</button>
+     </div>
     <button onclick="hit()">Ще карту</button>
     <button onclick="stand()">Стоп</button>
-    <button onclick="goToMenu()">⬅ Назад</button>
-  </div>
-
-  <div id="shopGame" class="game hidden">
-    <h2>Магазин 🛒</h2>
-    <p>Купити 50 робуксів:</p>
-    <button onclick="buyRobux(50)">Купити 50</button>
-    <button onclick="goToMenu()">⬅ Назад</button>
+    
   </div>
 
   <script src="script.js"></script>
