@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Казино на Робукси</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="header">
@@ -21,32 +21,30 @@
 
   <div id="slotGame" class="game hidden">
     <h2>Слоти 🎰</h2>
-    <div class="slot-machine">
-      <div id="slot1" class="slot">🍒</div>
-      <div id="slot2" class="slot">🍋</div>
-      <div id="slot3" class="slot">🍊</div>
-    </div>
+<div class="slot-machine">
+  <div id="slot1" class="slot">💎<br>💎<br>💎</div>
+  <div id="slot2" class="slot">💎<br>💎<br>💎</div>
+  <div id="slot3" class="slot">💎<br>💎<br>💎</div>
+</div>
+
     <button onclick="spin()">Крутити</button>
     <p id="slotResult"></p>
     <button onclick="goToMenu()">⬅ Назад</button>
-    <button onclick="plus()"> ставка + 10</button>
-    <button onclick="min()"> ставка - 10</button>
+    <button onclick="plus()">Ставка + 10</button>
+    <button onclick="min()">Ставка - 10</button>
   </div>
 
   <div id="rouletteGame" class="game hidden">
     <h2>Рулетка 🎯</h2>
-    <!-- <p>🔴💎⚫</p> -->
-    <div id="roll" >🔴💎⚫</div>
+    <div id="roll">🔴💎⚫</div>
     <button onclick="playRoulette('червоне')">Червоне 🔴</button>
     <button onclick="playRoulette('чорне')">Чорне ⚫</button>
     <button onclick="playRoulette('zero')">Zero 💎</button>
-
-
     <p id="rouletteResult"></p>
-    <button onclick="min()">ставка -</button>
+    <button onclick="min()">Ставка - 10</button>
+    <button onclick="plus()">Ставка + 10</button>
     <button onclick="goToMenu()">⬅ Назад</button>
-    <button onclick="plus()">ставка +</button>
-  </div>
+  </div>  
 
   <div id="blackjackGame" class="game hidden">
     <h2>Блекджек ♠️ (ставка: 20 робуксів)</h2>
@@ -54,6 +52,10 @@
       <p id="blackjackPlayer"></p>
       <p id="blackjackDealer"></p>
       <p id="blackjackResult"></p>
+
+<button onclick="plus()">Ставка +10</button>
+<button onclick="min()">Ставка -10</button>
+
     </div>
     <button onclick="startBlackjack()">Почати</button>
     <button onclick="hit()">Ще карту</button>
@@ -63,9 +65,8 @@
 
   <div id="shopGame" class="game hidden">
     <h2>Магазин 🛒</h2>
-    <p>Купити 50 або 100 робуксів:</p>
+    <p>Купити 50 робуксів:</p>
     <button onclick="buyRobux(50)">Купити 50</button>
-<button onclick="window.location.href='cardform.html'">Магазин 🛒</button>
     <button onclick="goToMenu()">⬅ Назад</button>
   </div>
 
