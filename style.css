@@ -29,6 +29,35 @@ button:hover {
   transform: scale(1.08);
 }
 
+#blackjackCards {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  justify-content: center; /* центрируем карты по горизонтали */
+  background-color: transparent; /* явно убираем фон */
+  padding: 0;  /* чтобы не было внутренних отступов */
+}
+
+.card {
+  font-family: monospace;
+  font-size: 14px;
+  /* background-color: #222; */  /* фон убран */
+  color: #FFD700;
+  padding: 10px;
+  border-radius: 8px;
+  user-select: none;
+  white-space: pre;
+  min-width: 90px;
+  line-height: 1.15em;
+  background-color: transparent; /* дополнительно фон не задаем */
+  border: none; /* если были границы */
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  height: 120px; /* фиксируем высоту для одинакового размера */
+}
+
+
 .slot-machine {
   display: flex;
   justify-content: center;
@@ -63,6 +92,3 @@ button:hover {
   font-size: 3em;
   margin-bottom: 15px;
 }
-
-
-
