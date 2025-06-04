@@ -10,108 +10,105 @@ let isSpinningSlot = false;
 let isSpinningRoulette = false;
 
 const blackjackCards = [
+  {name: "2", value: 2, art:
 `┌─────────┐
 │2        │
+│         │
 │    ♠    │
 │         │
+│         │
 │        2│
-└─────────┘`,
-
+└─────────┘`},
+  {name: "3", value: 3, art:
 `┌─────────┐
 │3        │
 │    ♠    │
+│         │
 │    ♠    │
+│         │
 │        3│
-└─────────┘`,
-
+└─────────┘`},
+  {name: "4", value: 4, art:
 `┌─────────┐
 │4        │
 │  ♠   ♠  │
 │         │
+│         │
 │  ♠   ♠  │
 │        4│
-└─────────┘`,
-
+└─────────┘`},
+  {name: "5", value: 5, art:
 `┌─────────┐
 │5        │
 │  ♠   ♠  │
 │    ♠    │
+│         │
 │  ♠   ♠  │
 │        5│
-└─────────┘`,
-
+└─────────┘`},
+  {name: "6", value: 6, art:
 `┌─────────┐
 │6        │
 │  ♠   ♠  │
-│  ♠     │
+│  ♠   ♠  │
+│         │
 │  ♠   ♠  │
 │        6│
-└─────────┘`,
-
+└─────────┘`},
+  {name: "7", value: 7, art:
 `┌─────────┐
 │7        │
 │  ♠   ♠  │
-│  ♠  ♠  │
+│  ♠ ♠ ♠  │
+│         │
 │  ♠   ♠  │
 │        7│
-└─────────┘`,
-
+└─────────┘`},
+  {name: "8", value: 8, art:
 `┌─────────┐
 │8        │
 │  ♠ ♠ ♠  │
 │  ♠   ♠  │
+│         │
 │  ♠ ♠ ♠  │
 │        8│
-└─────────┘`,
-
+└─────────┘`},
+  {name: "9", value: 9, art:
 `┌─────────┐
 │9        │
 │  ♠ ♠ ♠  │
 │  ♠ ♠ ♠  │
+│         │
 │  ♠ ♠ ♠  │
 │        9│
-└─────────┘`,
-
-
+└─────────┘`},
+  {name: "J", value: 10, art:
 `┌─────────┐
 │J        │
 │    ♠    │
 │  ♠ J ♠  │
+│         │
 │    ♠    │
 │        J│
-└─────────┘`,
-
-
+└─────────┘`},
+  {name: "A", value: 11, art:
 `┌─────────┐
 │A        │
 │    ♠    │
 │   ♠A♠   │
+│         │
 │    ♠    │
 │        A│
-└─────────┘`
+└─────────┘`}
 ];
 
-
-getRandomInt(blackjackCards.length);
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-// Выбираем случайную карту
-const randomIndex = getRandomInt(blackjackCards.length);
-const randomCard = blackjackCards[randomIndex];
-
-console.log(randomCard);
-console.log(randomIndex + 2);
-
-
 let playerCards = [];
-let dealerCards = [];
+
 
 function updateBalance() {
   document.getElementById("depValue").textContent = dep;
   document.getElementById("robux").textContent = robux;
+  document.getElementById("blackjackBet").textContent = dep;
 }
 
 function plus() {
@@ -140,7 +137,7 @@ function goToMenu() {
   updateBalance();
 }
 
-/* === СЛОТИ === */
+
 function spin() {
   if (isSpinningSlot) return;
   if (dep > robux) {
@@ -178,7 +175,6 @@ function spin() {
       return;
     }
 
-    // Обновляем символы
     p1.unshift(symbols[Math.floor(Math.random() * symbols.length)]);
     p1.pop();
     p2.unshift(symbols[Math.floor(Math.random() * symbols.length)]);
@@ -196,51 +192,18 @@ function spin() {
   spinStep(steps, initialDelay);
 }
 
-
-/* === БЛЕКДЖЕК === */
-function drawCard() {
-  getRandomInt(1, 11);
+function showMessage(text, elementId) {
+  const el = document.getElementById(elementId);
+  el.textContent = text;
+  setTimeout(() => { el.textContent = ""; }, 3000);
 }
 
 
 
-
-function sum(cards) {
-  return cards.reduce((a, b) => a + b, 0);
-}
-
-function startBlackjack() {
-  if (robux < 20) {
-    alert("Недостатньо робуксів для ставки (20)");
-    return;
-  }
-  robux -= 20;
-  playerCards = [drawCard(), drawCard()];
-  dealerCards = [drawCard(), drawCard()];
-  document.getElementById("blackjackResult").textContent = "";
-  renderBlackjack();
-  updateBalance();
-}
-
-function renderBlackjack() {
-  document.getElementById("blackjackPlayer").textContent = `Ваші карти: ${playerCards.join(", ")} (Сума: ${sum(playerCards)})`;
-  document.getElementById("blackjackDealer").textContent = `Карти дилера: ${dealerCards.join(", ")} (Сума: ${sum(dealerCards)})`;
-}
-
-function hit() {
-  if (playerCards.length === 0) return;
-  playerCards.push(drawCard());
-  renderBlackjack();
-  if (sum(playerCards) > 21) {
-    document.getElementById("blackjackResult").textContent = "❌ Перебір! Ви програли.";
-    playerCards = [];
-    dealerCards = [];
-  }
-}
-function playRoulette(choice) {
+function playRoulette(betColor) {
   if (isSpinningRoulette) return;
   if (dep > robux) {
-    alert("Недостатньо робуксів для ставки");
+    showMessage("Недостатньо робуксів для ставки", "rouletteResult");
     return;
   }
 
@@ -248,93 +211,178 @@ function playRoulette(choice) {
   robux -= dep;
   updateBalance();
 
-  const steps = 30;
+  let spinCount = 20;
   let delay = 50;
-  let delayInc = 20;
 
-
-
-  
-  const resultIndex = Math.floor(Math.random() * rouletteSymbols.length);
-  const resultSymbol = rouletteSymbols[resultIndex];
-
-  function spinStep(step) {
-    if (step <= 0) {
-      let resultText = "";
-      if (
-        (choice === 'червоне' && resultSymbol === '🔴') ||
-        (choice === 'чорне' && resultSymbol === '⚫') ||
-        (choice === 'zero' && resultSymbol === '💎')
-      ) {
-        let winAmount = choice === "zero" ? dep * 10 : dep * 2;
-        robux += winAmount;
-        resultText = `🎉 Ви виграли ${winAmount} робуксів!`;
-      } else {
-        resultText = `❌ Ви програли ${dep} робуксів.`;
+  function spinStep(count) {
+    if (count <= 0) {
+      let resultColor = p4[1]; 
+      let win = false;
+      if (betColor === "zero" && resultColor === '💎') {
+        win = true;
+      } else if (betColor === "червоне" && resultColor === '🔴') {
+        win = true;
+      } else if (betColor === "чорне" && resultColor === '⚫') {
+        win = true;
       }
 
-      document.getElementById("rouletteResult").textContent = resultText;
+      const resultEl = document.getElementById("rouletteResult");
+      if (win) {
+        let winAmount = dep * 3;
+        robux += winAmount;
+        resultEl.textContent = `🎉 Ви виграли +${winAmount} робуксів!`;
+      } else {
+        resultEl.textContent = "😢 Ви програли.";
+      }
+
       updateBalance();
       isSpinningRoulette = false;
+
+      setTimeout(() => { resultEl.textContent = ""; }, 3000);
       return;
     }
 
-    // Плавная анимация
+
     p4.unshift(rouletteSymbols[Math.floor(Math.random() * rouletteSymbols.length)]);
     p4.pop();
 
-    document.getElementById("roll").textContent = p4.join('\n');
-
-    setTimeout(() => spinStep(step - 1), delay);
-    delay += delayInc;
+    document.getElementById("roll").textContent = p4.join('');
+    setTimeout(() => spinStep(count - 1), delay);
   }
 
-  spinStep(steps);
+  spinStep(spinCount);
+}
+
+console.log
+function getCard() {
+  
+  return blackjackCards[Math.floor(Math.random() * blackjackCards.length)];
+}  
+function getCard1() {
+
+  return Math.floor(Math.random() * 12);
+  
+}  
+ 
+
+function calculateScore(cards) {
+  let sum = 0;
+  let aces = 0;
+  cards.forEach(c => {
+    sum += c.value;
+    if (c.name === "A") aces++;
+  });
+
+  while (sum > 21 && aces > 0) {
+    sum -= 10;
+    aces--;
+  }
+
+  return sum;
+}
+
+function renderCards(cards, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  cards.forEach(c => {
+    const cardPre = document.createElement("pre");
+    cardPre.classList.add("card");
+    cardPre.textContent = c.art;
+    container.appendChild(cardPre);
+  });
+}
+function hit() {
+  if (playerCards.length === 0) return;
+
+  playerCards.push(getCard());
+  renderCards(playerCards, "blackjackCards");
+
+  const playerScore = calculateScore(playerCards);
+
+  if (playerScore > 21) {
+    document.getElementById("blackjackResult").textContent = "Перебір! Ви програли.";
+    updateBalance();
+    renderBlackjackStatus();
+    document.getElementById("betButtons").style.display = "block";
+
+    setTimeout(() => {
+      playerCards = [];
+      dealerCards = [];
+      renderCards([], "blackjackCards");
+      document.getElementById("blackjackResult").textContent = "";
+      document.getElementById("blackjackPlayer").textContent = "";
+      document.getElementById("blackjackDealer").textContent = "";
+    }, 3000);
+  } else {
+    renderBlackjackStatus();
+  }
 }
 
 function startBlackjack() {
-  if (robux < dep) {
-    alert(`Недостатньо робуксів для ставки (${dep})`);
+  if (dep > robux) {
+    showMessage("Недостатньо робуксів для ставки", "blackjackResult");
     return;
   }
+
   robux -= dep;
-  playerCards = [drawCard(), drawCard()];
-  dealerCards = [drawCard(), drawCard()];
-  document.getElementById("blackjackResult").textContent = "";
-  renderBlackjack();
   updateBalance();
+
+  playerCards = [getCard(), getCard()];
+  dealerCards = [getCard(), getCard()];
+
+  renderCards(playerCards, "blackjackCards");
+
+  document.getElementById("blackjackResult").textContent = "";
+  renderBlackjackStatus();
+
+  document.getElementById("betButtons").style.display = "none";
+}
+
+function renderBlackjackStatus() {
+  const playerScore = calculateScore(playerCards);
+  const dealerScore = calculateScore(dealerCards);
+
+  document.getElementById("blackjackPlayer").textContent = `Ваші карти: ${playerScore}`;
+  document.getElementById("blackjackDealer").textContent = `Карти дилера: ${dealerScore}`;
 }
 
 function stand() {
-  if (playerCards.length === 0) return;
-  while (sum(dealerCards) < 17) {
-    dealerCards.push(drawCard());
-  }
-  const pSum = sum(playerCards);
-  const dSum = sum(dealerCards);
-  let result = "";
+  if (playerCards.length == 0) return;
 
-  if (dSum > 21 || pSum > dSum) {
-    let winAmount = dep * 3; 
-    robux += winAmount;
-    result = `🎉 Ви виграли! +${winAmount} робуксів`;
-  } else if (pSum < dSum) {
-    result = `❌ Ви програли ${dep} робуксів.`;
-  } else {
+  const playerScore = calculateScore(playerCards);
+
+  while (calculateScore(dealerCards) < 17) {
+    dealerCards.push(getCard());
+  }
+
+  renderCards(playerCards, "blackjackCards");
+
+  const dealerScore = calculateScore(dealerCards);
+
+  let resultText = "";
+
+  if (dealerScore > 21 || playerScore > dealerScore) {
+    robux += dep * 2;
+    resultText = "Ви виграли!";
+  } else if (playerScore == dealerScore) {
     robux += dep;
-    result = `🤝 Нічия. Повернено ставку ${dep} робуксів.`;
+    resultText = "Нічия!";
+  } else {
+    resultText = "Ви програли.";
   }
 
-  document.getElementById("blackjackResult").textContent = result;
+  document.getElementById("blackjackResult").textContent = resultText;
   updateBalance();
-  playerCards = [];
-  dealerCards = [];
-  renderBlackjack();
-}
-function buyRobux(amount) {
-  robux += amount;
-  updateBalance();
-  alert(`Ви купили ${amount} робуксів!`);
+  renderBlackjackStatus();
+  document.getElementById("betButtons").style.display = "block";
+
+  setTimeout(() => {
+    playerCards = [];
+    dealerCards = [];
+    renderCards([], "blackjackCards");
+    document.getElementById("blackjackResult").textContent = "";
+    document.getElementById("blackjackPlayer").textContent = "";
+    document.getElementById("blackjackDealer").textContent = "";
+  }, 3000);
 }
 
-updateBalance();
