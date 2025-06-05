@@ -8,6 +8,7 @@ const rouletteSymbols = ['🔴', '💎', '⚫'];
 let p4 = ["🔴", "💎", "⚫"];
 let isSpinningSlot = false;
 let isSpinningRoulette = false;
+let bj = 1 
 
 const blackjackCards = [
   {name: "2", value: 2, art:
@@ -211,13 +212,15 @@ function playRoulette(betColor) {
   robux -= dep;
   updateBalance();
 
-  let spinCount = 20;
-  let delay = 50;
+  let steps = 30;
+  let initialDelay = 50;
+  let delayIncrement = 20;
 
-  function spinStep(count) {
-    if (count <= 0) {
+  function spinStep(step, delay) {
+    if (step <= 0) {
       let resultColor = p4[1]; 
       let win = false;
+
       if (betColor === "zero" && resultColor === '💎') {
         win = true;
       } else if (betColor === "червоне" && resultColor === '🔴') {
@@ -242,15 +245,14 @@ function playRoulette(betColor) {
       return;
     }
 
-
     p4.unshift(rouletteSymbols[Math.floor(Math.random() * rouletteSymbols.length)]);
     p4.pop();
 
     document.getElementById("roll").textContent = p4.join('');
-    setTimeout(() => spinStep(count - 1), delay);
+    setTimeout(() => spinStep(step - 1, delay + delayIncrement), delay);
   }
 
-  spinStep(spinCount);
+  spinStep(steps, initialDelay);
 }
 
 console.log
@@ -319,6 +321,8 @@ function hit() {
 }
 
 function startBlackjack() {
+  if (bj == 1){
+  bj = 0;
   if (dep > robux) {
     showMessage("Недостатньо робуксів для ставки", "blackjackResult");
     return;
@@ -337,6 +341,7 @@ function startBlackjack() {
 
   document.getElementById("betButtons").style.display = "none";
 }
+}
 
 function renderBlackjackStatus() {
   const playerScore = calculateScore(playerCards);
@@ -352,8 +357,11 @@ function stand() {
   const playerScore = calculateScore(playerCards);
 
   while (calculateScore(dealerCards) < 17) {
-    dealerCards.push(getCard());
+   if (calculateScore(dealerCards) < 17 && calculateScore(dealerCards) != playerScore) {
+      dealerCards.push(getCard());
+   }
   }
+
 
   renderCards(playerCards, "blackjackCards");
 
@@ -367,9 +375,13 @@ function stand() {
   } else if (playerScore == dealerScore) {
     robux += dep;
     resultText = "Нічия!";
+  }
+  else if (playerScore == 21 && dealerScore !=21) {
+    robux += dep * 10;
+    resultText = "blackJack!";
   } else {
     resultText = "Ви програли.";
-  }
+  } 
 
   document.getElementById("blackjackResult").textContent = resultText;
   updateBalance();
@@ -383,6 +395,7 @@ function stand() {
     document.getElementById("blackjackResult").textContent = "";
     document.getElementById("blackjackPlayer").textContent = "";
     document.getElementById("blackjackDealer").textContent = "";
-  }, 3000);
+    bj = 1;
+  }, 1000);
 }
 
