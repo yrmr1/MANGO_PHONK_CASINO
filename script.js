@@ -399,3 +399,27 @@ function stand() {
   }, 1000);
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  let robux = localStorage.getItem('robux');
+  if (!robux) {
+    robux = 100; 
+    localStorage.setItem('robux', robux);
+  }
+  document.getElementById('robux').textContent = robux;
+});
+
+// Зберігаємо баланс у localStorage
+function saveRobux() {
+  localStorage.setItem('robux', robux);
+}
+
+// Завантажуємо баланс з localStorage
+function loadRobux() {
+  const saved = localStorage.getItem('robux');
+  if (saved !== null) {
+    robux = parseInt(saved);
+  } else {
+    robux = 100; // стартове значення
+    saveRobux();
+  }
+}
