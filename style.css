@@ -5,6 +5,133 @@ body {
   text-align: center;
   padding: 30px;
   margin: 0;
+
+}
+.credit-card {
+  width: 300px;
+  height: 180px;
+  background: linear-gradient(135deg, #3b8d99, #6b6b83, #aa4b6b);
+  border-radius: 16px;
+  color: white;
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Courier New', monospace;
+}
+
+.card-number {
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+form input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+form button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+
+.card {
+  width: 60px;
+  height: 90px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background-color: white;
+  color: black;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.credit-card {
+  width: 300px;
+  height: 180px;
+  background: linear-gradient(135deg, #3b8d99, #6b6b83, #aa4b6b);
+  border-radius: 16px;
+  color: white;
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Courier New', monospace;
+}
+
+.card-number {
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+form input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+form button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+
+.card.red {
+  color: red;
 }
 
 h1 {
