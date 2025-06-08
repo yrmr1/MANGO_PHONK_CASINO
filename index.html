@@ -16,10 +16,42 @@
     <button onclick="showGame('slot')">Слоти 🎰</button>
     <button onclick="showGame('roulette')">Рулетка 🎯</button>
     <button onclick="showGame('blackjack')">Блекджек ♠️</button>
-    <button onclick="location.href='cardform.html'">Магазин 🛒</button>
+    <button onclick="showGame('paymentForm')">Купити робукси 💳</button>
 
   </div>
+  <div id="paymentFormGame" class="game hidden">
+   <!--  <h2>Оплата банківською карткою 💳</h2> -->
+    <!-- <div class="credit-card">
+      <div class="card-number">#### #### #### ####</div>
+      <div class="card-info">
+        <div class="card-holder">Ім'я власника</div>
+        <div class="card-expiry">MM/YY</div>
+      </div>
+    </div> -->
+  
+    <form onsubmit="fakePayment(event)" style="display: flex; flex-direction: column; width: 300px; gap: 10px;">
+      <label for="cardNumber">Номер картки</label>
+      <input type="text" id="cardNumber" maxlength="19" required>
+    
+      <label for="cardHolder">Ім'я власника</label>
+      <input type="text" id="cardHolder" required>
+    
+      <label for="cardExpiry">Дата закінчення</label>
+      <input type="text" id="cardExpiry" maxlength="5" required>
+    
+      <label for="cardCVV">CVV</label>
+      <input type="text" id="cardCVV" maxlength="3" required>
+    
+      <label for="robuxAmount">Кількість Robux</label>
+      <input type="number" id="robuxAmount" min="1" required>
+    
+      <button type="submit">Оплатити 💰</button>
+    </form>
+    
+    <button onclick="goToMenu()" style="margin-top: 15px;">⬅ Назад</button>
 
+  </div>
+  
   <div id="slotGame" class="game hidden">
     <h2>Слоти 🎰</h2>
     <div class="slot-machine">
@@ -31,8 +63,8 @@
     <button onclick="spin()">Крутити</button>
     <p id="slotResult"></p>
     <button onclick="goToMenu()">⬅ Назад</button>
-    <button onclick="plus()">Ставка + 10</button>
-    <button onclick="min()">Ставка - 10</button>
+    <button onclick="plus()">Ставка +10</button>
+    <button onclick="min()">Ставка -10</button>
   </div>
 
   <div id="rouletteGame" class="game hidden">
@@ -42,29 +74,28 @@
     <button onclick="playRoulette('чорне')">Чорне ⚫</button>
     <button onclick="playRoulette('zero')">Zero 💎</button>
     <p id="rouletteResult"></p>
-    <button onclick="min()">Ставка - 10</button>
-    <button onclick="plus()">Ставка + 10</button>
+    <button onclick="min()">Ставка -10</button>
+    <button onclick="plus()">Ставка +10</button>
     <button onclick="goToMenu()">⬅ Назад</button>
   </div>  
 
   <div id="blackjackGame" class="game hidden">
     <h2>Блекджек ♠️ (ставка: <span id="blackjackBet">20</span> робуксів)</h2>
-    <div id="blackjackCards" style="display: flex; gap: 10px; justify-content: center; margin: 10px 0;">
-    </div>
+    <div id="blackjackCards" style="display: flex; gap: 10px; justify-content: center; margin: 10px 0;"></div>
 
     <div id="blackjackArea">
       <p id="blackjackPlayer"></p>
       <p id="blackjackDealer"></p>
       <p id="blackjackResult"></p>
-<div id="betButtons">
-     <button onclick="plus()">Ставка +10</button>
-      <button onclick="min()">Ставка -10</button>
-   <button onclick="goToMenu()">⬅ Назад</button>
-    <button onclick="startBlackjack()">Почати</button>
-     </div>
-    <button onclick="hit()">Ще карту</button>
-    <button onclick="stand()">Стоп</button>
-    
+      <div id="betButtons">
+        <button onclick="plus()">Ставка +10</button>
+        <button onclick="min()">Ставка -10</button>
+        <button onclick="goToMenu()">⬅ Назад</button>
+        <button onclick="startBlackjack()">Почати</button>
+      </div>
+      <button onclick="hit()">Ще карту</button>
+      <button onclick="stand()">Стоп</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
