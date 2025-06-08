@@ -412,6 +412,20 @@ document.addEventListener('DOMContentLoaded', () => {
 function saveRobux() {
   localStorage.setItem('robux', robux);
 }
+function fakePayment(event) {
+  event.preventDefault(); // Зупиняє перезавантаження сторінки
+
+  const amount = parseInt(document.getElementById('robuxAmount').value);
+  if (!isNaN(amount) && amount > 0) {
+    robux += amount;
+    updateBalance();
+    saveRobux();
+    alert(`Ви купили ${amount} робуксів!`);
+    goToMenu();
+  } else {
+    alert("Введіть коректну кількість робуксів");
+  }
+}
 
 // Завантажуємо баланс з localStorage
 function loadRobux() {
